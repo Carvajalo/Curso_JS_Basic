@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("--------------------");
+      console.log("Argumentos y Parámetros Rest");
+      console.log(
+        "Si no supiéramos sobre parámeteos rest, tendríamos que hacer esto:"
+      );
+      // Parámetros y Argumentos REST
+      //Si no tuviéramos idea de los parámetros REST, podríamos hacer lo siguiente:
+      function checkOut(pr1, pr2, pr3, pr4, pr5, pr6, pr7, pr8, pr9, pr10) {
+        //Si querémos añadir mas parámetros tneemos que añadirlos a la función
+        //Luego volver a hacer la suma de los parámetros con los demás parámetros
+        const total =
+          pr1 + pr2 + pr3 + pr4 + pr5 + pr6 + pr7 + pr8 + pr9 + pr10;
+        return console.log(total);
+      }
+
+      checkOut(11, 22, 33, 44); //NaN porque no se han añadido todos los parámetros,
+      //Se está pretendiendo sumar números + n valores undefined.
+
+      console.log("Pero con los parámetros REST, podemos hacer esto:");
+      //Ahora, si no sabemos cuantos parámetros vamos a recibir, podemos hacer lo siguiente:
+      //podemos usar parámetros rest, por ejemplo:
+      function checkOut2(...prices) {
+        //El parámetro rest, se convierte en un array, por lo que podemos usar el método reduce
+        //para sumar todos los valores del array
+        const total = prices.reduce((a, b) => a + b);
+        return console.log(total);
+      }
+      //Primer ejemplo de función con parámetros rest con 4 parámetros
+      checkOut2(11, 22, 33, 44, 55);
+      //Segundo ejemplo de función con parámetros rest con 10 parámetros
+      checkOut2(11, 22, 33, 44, 55, 66, 77, 88, 99, 100);
+      //Tercer ejemplo de función con parámetros rest con 20 parámetros
+      checkOut2(
+        11,
+        22,
+        33,
+        44,
+        55,
+        66,
+        77,
+        88,
+        99,
+        100,
+        111,
+        222,
+        333,
+        444,
+        555,
+        666,
+        777,
+        888,
+        999,
+        1000
+      );
+      console.log(
+        "Podemos usar los parámetros rest para crear funciones que acepten un número indefinido de argumentos"
+      );
+
+      /* Con una función flecha */
+      console.log("Con funciones flecha:");
+      const checkOut3 = (...prices) => {
+        const total = prices.reduce((acc, curr) => acc + curr);
+        return console.log(total);
+      };
+      checkOut3(11, 22, 33, 44);
+
+      /* Con ARGUMENTS */
+      console.log("Con ARGUMENTS:");
+      console.log("Usando ARGUMENTS");
+      function checkOut4() {
+        //El objeto ARGUMENTS es un array-like object, por lo que no podemos usar el método reduce
+        //para sumar todos los valores del array
+        //Para convertirlo en un array, podemos usar el método Array.from
+        const prices = Array.from(arguments);
+        const total = prices.reduce((acc, curr) => acc + curr);
+        return console.log(total);
+      }
+      checkOut4(11, 22, 33, 44);
+
+      //#8 Return valor
+      console.log("--------------------");
+      console.log("Return valor");
+      console.log("Ejemplo 1:");
+      function checkOut5(name, ...params) {
+        const total = params.reduce((acc, curr) => {
+          return acc + curr;
+        });
+        return `El total de la compra de ${name} es de ${total}`; //Si no le pongo el return, retornará undefined,
+        //porque no se está retornando nada
+      }
+      console.log(checkOut5("Juan", 11, 22, 33, 44));
+
+      console.log("Ejemplo 2:");
+        function checkOut6(name, ...params) {
+            const total = params.reduce((acc, curr) => {
+            return acc + curr;
+            });
+            console.log(`El total de la compra de ${name} es de ${total}`); 
+        }
+        console.log(checkOut6("Juan", 11, 22, 33, 44)); //retornará undefined, porque no se está retornando nada en la función principal
+
+    </script>
+  </body>
+</html>

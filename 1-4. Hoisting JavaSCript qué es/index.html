@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer src="main.js"></script>
+    <noscript> JavaScript desactivado $warning; </noscript>
+  </head>
+  <body>
+    <h1>Hola</h1>
+    <script>
+      //JavaScript inicialmente busca por funciones y variables en el ámbito local, si no las encuentra, busca en el ámbito global.
+      //Si no encuentra la función o variable en el ámbito global, entonces se lanza un error.
+      //Adicionalmente, tiene en cuenta el hoisting, es decir, que las funciones y variables declaradas con var se mueven al inicio del ámbito.
+      //Y aquellas que se declaran con Let y Const no se mueven al inicio del ámbito, sino que hacen parte del bloque o ámbito local.
+
+      //Ejemplo 1
+      console.log("Ejemplo 1");
+      //var a; //Se mueve al inicio del ámbito
+      console.log("a = " + a); //Undefined porque solo se declara la variable, no se inicializa.
+      var a = 2; //Se inicializa la variable.
+      console.log("a = " + a); //Ahora si se imprime el valor de la variable.
+
+      //Ejemplo 2
+      console.log("Ejemplo 2");
+      //var b; //Se mueve al inicio del ámbito
+      var b;
+      console.log("b = " + b); //Undefined porque solo se declaró la variable, no se inicializó.
+      b = 2; //Se inicializa la variable.
+      console.log("b = " + b); //Ahora si se imprime el valor de la variable.
+
+      //Ejemplo 3
+      console.log("Ejemplo 3");
+      //var c; //Se mueve al inicio del ámbito
+      var c = 2; //Se inicializa la variable.
+      console.log("c = " + c); //Se imprime el valor de la variable.
+
+      console.log("Ejemplo 4");
+      {
+        var d = 2; //Se inicializa la variable.
+      }
+      console.log("d = " + d); //Se imprime el valor de la variable.
+
+      //Ejemplo 5
+      console.log("Ejemplo 5");
+      //var e = 2 //Se mueve al inicio del ámbito
+      console.log("e = " + e); //Undefined porque solo se sube al ámbito global la declaración, no se inicializa.
+      {
+        var e = 2; //Se inicializa la variable.
+      }
+
+      //Ejemplo 6
+      console.log("Ejemplo 6");
+      console.log("console.log(f); //Error, leer notas*"); ///Error porque no se sube al ámbito global la declaración, ni se inicializa.
+      console.log(`
+      {
+        let f = 2 //Se inicia la variable y se mueve al inicio del ámbito local.
+      }
+      `);
+      console.log(`console.log("f = " + f); //Error, leer notas*`); //Error porque no se sube al ámbito global la declaración, ni se inicializa.
+      {
+        let f = 2; //Se inicializa la variable y se mueve al inicio del ámbito local.
+      }
+      /* console.log("f = " + f);  */ //Error porque igualmente, no está la variable en el ámbito global.
+
+      //Ejemplo 7
+      console.log("Ejemplo 7");
+      let g = 2; //Se inicializa la variable y se mueve al inicio del ámbito global.
+      {
+        console.log("g = " + g); //Se imprime el valor de la variable, ya que puede acceder a ella desde el ámbito global.
+      }
+
+      //Ejemplo 8
+      console.log("Ejemplo 8");
+      console.log(`Const y su "mutabilidad"`);
+      console.log("const h = 2;");
+      console.log("h = 3;"); //Error, no se puede reasignar el valor de una constante.
+      //Sin embargo sí se pueden reasignar las propiedades de un objeto.
+
+      //Ejemplo 9
+      console.log("Ejemplo 9");
+      const Nombres = { nombre: "Orlando", apellido: "Meriño" };
+      console.log(Nombres);
+      console.log(
+        "Nombres = " +
+          "{nombre: " +
+          Nombres.nombre +
+          ",  apellido: " +
+          Nombres.apellido +
+          "}"
+      );
+      Nombres.nombre = "Orly";
+      Nombres.apellido = "Carvajal";
+      console.log(
+        "Nombres = " +
+          "{nombre: " +
+          Nombres.nombre +
+          ", apellido: " +
+          Nombres.apellido +
+          "}"
+      );
+    </script>
+    <!-- <script src="main.js"></script> -->
+  </body>
+</html>

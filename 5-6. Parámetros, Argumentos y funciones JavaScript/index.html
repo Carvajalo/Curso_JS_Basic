@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("--------------------");
+      // Parámetros y Argumentos
+      //Ejemplo 1
+      console.log("Ejemplo 1");
+      function saludar(nombre) {
+        console.log("Hola me llamo " + nombre);
+      }
+
+      saludar(); //Cuando es llamada la función, no se le pasa ningún argumento, por lo tanto, el valor de nombre es undefined.
+      saludar("Juan"); //Cuando es llamada la función, se le pasa un argumento, por lo tanto, el valor de nombre es Juan.
+      saludar("Juan", "Perez"); //Cuando es llamada la función, se le pasan dos argumentos, por lo tanto, el valor de nombre es Juan, y el segundo argumento es ignorado.
+
+      //Ejemplo 2
+      console.log("Ejemplo 2");
+      function saludar2(nombre, apllido = "Meriño") {
+        console.log("Hola me llamo " + nombre + " " + apllido);
+      }
+      saludar2(); //Cuando es llamada la función, no se le pasa ningún argumento, por lo tanto, el valor de nombre es undefined, y el valor de apellido es Meriño.
+      saludar2("Juan"); //Cuando es llamada la función, se le pasa un argumento, por lo tanto, el valor de nombre es Juan, y el valor de apellido es Meriño.
+      saludar2("Juan", "Perez"); //Cuando es llamada la función, se le pasan dos argumentos, por lo tanto, el valor de nombre es Juan, y el valor de apellido es Perez.
+
+      //Ejemplo 3
+      console.log("Ejemplo 3");
+      function saludar3(nombre = "Orlando", apllido = "Meriño") {
+        console.log("Hola me llamo " + nombre + " " + apllido);
+      }
+      saludar3(); //Cuando es llamada la función, no se le pasa ningún argumento, por lo tanto, el valor de nombre es Orlando, y el valor de apellido es Meriño.
+      saludar3("Juan", undefined); //Cuando es llamada la función, se le pasan dos argumentos, pero uno en undefined, el valor de nombre es Juan, y el valor de apellido es Meriño.
+      saludar3("Juan", ""); //Cuando es llamada la función, se le pasan dos argumentos, pero uno en "", el valor de nombre es Juan, y el valor de apellido es "".
+
+      //Ejemplo 4
+      console.log("Ejemplo 4");
+      saludar();
+      /*Esto funciona arriba de la declaración porque 
+        el motor de JavaScript primero lee todas las 
+        declaraciones de funciones y las almacena en 
+        memoria y las sube al inicio del código.  */
+      function saludar4(nombre = "Orlando", apllido = "Meriño") {
+        console.log("Hola me llamo " + nombre + " " + apllido);
+      }
+      console.log("--------------------");
+
+      //Funciones anónimas.
+      //Expresiones funcional.
+      //ejemplo 1
+      console.log("Funciones anónimas");
+      const saludar5 = function (nombre = "Orlando", apllido = "Meriño") {
+        console.log("Hola me llamo " + nombre + " " + apllido);
+      };
+      saludar5("Juan", "Perez");
+
+      //ejemplo 2
+      console.log("Ejemplo 2");
+      console.log("Primero se tiene que declarar antes de hacer un llamado");
+      //saludar6(); //Esto no funciona porque la función no ha sido inicializada.
+      const saludar6 = function saludar6() {
+        console.log("Hola me llamo Orlando");
+      };
+
+      console.log("--------------------");
+      //Funciones flecha.
+      //ejemplo 1
+      console.log("Funciones flecha");
+      //Es una vesión acortada de una función anónima a través de una función de flecha
+      //No dipone de un contexsto propio de this.
+      //Disponen de uun retorno implícito, delimitadores opcionales y no se alzan.
+      console.log("Ejemplo 1");
+      const saludar7 = () => {
+        console.log("Hola me llamo Orlando");
+      };
+      saludar7();
+
+      //ejemplo 2
+      //saludar8(); //Esto no funciona porque es indefinido.
+      var saludar8 = () => {
+        console.log("Hola me llamo Orlando");
+      };
+
+      //ejemplo 3
+      const saludar9 = (nombre = "Orlando", apellido = "Meriño") => {
+        console.log("Hola me llamo " + nombre + " " + apellido);
+      };
+      saludar9("Juan", "Perez");
+
+      console.log("--------------------");
+      //Funciones IIFE
+      //Ejemplo 1
+      console.log("Funciones IIFE");
+      (function () {
+        console.log("Creando un IIFE");
+      })();
+
+      console.log("--------------------");
+      //Funciones con retorno.
+      //Son funciones que retornan un valor o un set de valores.
+      console.log("Funciones con retorno");
+      //Ejemplo 1
+      console.log("Ejemplo 1");
+      const mayuscula = (nombre) => {
+        nombre = nombre.toUpperCase();
+        return nombre;
+      };
+      let nombre = mayuscula("orlando");
+      console.log(nombre);
+
+      //Ejemplo 2
+      console.log("ejemplo 2");
+      const mayuscula2 = (nombre) => {
+        return nombre.toUpperCase();
+      };
+      nombre = mayuscula2("Orly");
+      console.log(nombre);
+
+      //ejemplo 3
+      console.log("ejemplo 3");
+      const mayuscula3 = (nombre) => nombre.toUpperCase();
+      nombre = mayuscula3("Lando");;
+      console.log(nombre);
+
+      //ejemplo 4
+      const mayuscula4 = nombre => nombre.toUpperCase();
+    </script>
+  </body>
+</html>

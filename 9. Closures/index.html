@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("--------------------");
+      console.log("Closures");
+      //Esto no es un Closure:
+      function aleatorio() {
+        const valor = Math.random();
+        console.log(valor);
+        function doble() {
+          const numero = valor * 2; //Busca el valor en el ámbito de la función aleatorio (o función de más arriba).
+          console.log(valor, numero);
+        }
+        doble();
+      }
+      console.log(aleatorio()); //Retorna undefined
+      //console.log(valor); //valor is not defined
+
+      //Ejemplo de Closure 2
+      console.log(
+        "Un closure es una función que recuerda el estado de las variables al momento de ser creada, incluso si se ejecuta fuera de su ámbito léxico."
+      );
+      console.log("Es retornar una función desde otra función.");
+      function soyUnClousue() {
+        const variableLocal = "Juan";
+        return function () {
+          return variableLocal.toUpperCase();
+        };
+      }
+      const miClosure = soyUnClousue();
+      console.log(miClosure());
+
+      //Ejemplo sin Closure
+      function pedirPizza(UID, Pizza) {
+        const pedido = `${UID}_${Pizza}`;
+        return pedido;
+      }
+      console.log(pedirPizza("2165123", "Peperoni"));
+      console.log(pedirPizza("2165123", "Hawaiana"));
+      console.log(pedirPizza("2165123", "Margarita"));
+
+      //Ejemplo con Closure
+      function pedirPizza2(UID) {
+        const ID = `${UID}`;
+        return function (pizza) {
+          return `${ID}_${pizza}`;
+        };
+      }
+      const miPedido = pedirPizza2("2165123");
+      console.log(miPedido("Peperoni"));
+      console.log(miPedido("Hawaiana"));
+
+      //Ejemplo de un Closure modificando el estado interior de otro.
+      function pedirPizza3(UID) {
+        cantPizzas = 0; //Variable global dentro de la función.
+        const ID = `${UID}`;
+        return function (pizza) {
+          cantPizzas++;
+          return `${ID}_${pizza}_${cantPizzas}`;
+        };
+      }
+
+      const miPedido2 = pedirPizza3("2165123");
+      console.log(miPedido2("Peperoni"));
+      console.log(miPedido2("Hawaiana"));
+      console.log(miPedido2("Margarita"));
+
+      console.log("Ejercicio 1");
+      console.log("Módulo N de N-números Array[N] % x");
+      /*La función de módulo de cualquier N número para cualquier cantidad
+      de números puede ser escrita de la siguiente manera: */
+      function ModuloN(N) {
+        //Acá pedimos el módulo
+        return function (...Nums) {
+          //Haciendo uso de los parámetros rest permitimos ingresar cualquier cantidad de números al clousure
+          //Ahora, este es un nuevo contexto y para cada N-cantidad de Nums se le sacará el módulo N y se filtrarán los valores
+          return Nums.filter((item) => item % N === 0);
+        };
+      }
+
+      //Por ejemplo:
+      const miModulo = ModuloN(2); //El módulo es 2
+      console.log(miModulo(2, 3, 4, 5, 6)); //(3)[2,4,6]
+      console.log(miModulo(8, 5, 3, 2)); //(2)[8,2]
+
+      console.log("Ejercicio 2");
+      function miFuncion() {
+        let count = 1;
+        return function contador() {
+          return count++;
+        }
+      }
+      let a = miFuncion()
+      let b = a()
+      console.log(a);
+      console.log(b);
+      b = a()
+      console.log(b);
+
+    </script>
+  </body>
+</html>

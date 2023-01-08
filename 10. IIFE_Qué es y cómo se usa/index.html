@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="#">"Soy el link número"1</a>
+    <a href="#">"Soy el link número"2</a>
+    <a href="#">"Soy el link número"3</a>
+    <a href="#">"Soy el link número"4</a>
+
+    <script>
+      var elems = document.getElementsByTagName("a");
+      for (var i = 0; i < elems.length; i++) {
+        (function (lockedInIndex) {
+          elems[i].addEventListener(
+            "click",
+            function (e) {
+              e.preventDefault();
+              console.log(
+                `Link número: ${i} y su Local Index: ${lockedInIndex}`
+              );
+              alert("I am link #" + lockedInIndex);
+            },
+            "false"
+          );
+        })(i);
+      }
+      /*La principal utilidad de un IIFE es la auto-creación de un ámbito
+        funcional nuevo e independiente*/
+        //Ejemplo: 
+      for(var i = 0; i < 10; i++){
+          console.log(i);
+          setTimeout(function(){
+            console.log("\nEl número es: "+ i);
+          }, 1000);
+        }
+        console.log("Al final: " + i);
+    </script>
+  </body>
+</html>
